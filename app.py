@@ -1,8 +1,9 @@
 import streamlit as st
-import cv2
 import numpy as np
 from predict import predict_burn
 from chatbot import get_chatbot_response
+from PIL import Image
+
 
 
 st.set_page_config(page_title="LifeLine AI", page_icon="🔥", layout="centered", initial_sidebar_state="collapsed")
@@ -35,6 +36,10 @@ with col_right:
         if st.button("🌙 Dark" if st.session_state.theme == "light" else "☀️ Light"):
             st.session_state.theme = "light" if st.session_state.theme == "dark" else "dark"
             st.rerun()
+
+
+
+
 
 # ── THEME VARIABLES
 if st.session_state.theme == "dark":
@@ -198,8 +203,8 @@ label = None
 uploaded_file = st.file_uploader("", type=["jpg","png","jpeg"], label_visibility="collapsed")
 
 if uploaded_file is not None:
-    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    image = cv2.imdecode(file_bytes, 1)
+    image = Image.open(uploaded_file)
+    image = np.array(image)
     col_img, _ = st.columns([2,1])
     with col_img:
         st.image(image, caption="Uploaded Image", use_column_width=True)
