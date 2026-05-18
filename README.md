@@ -145,3 +145,7 @@ Feel free to fork the repo and improve the project!
 Pull requests are welcome 🚀
 
 ---
+
+## License
+
+This project is protected under a custom proprietary license. Viewing is allowed for educational purposes only. Reuse, redistribution, or commercial usage without permission is prohibited.
